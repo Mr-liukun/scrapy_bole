@@ -14,8 +14,8 @@ class ScrapyBolePipeline(object):
         self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):
-        sql = "insert into bole (url,title, type,tag,content, time) values('%s','%s','%s','%s','%s','%s')" \
-              % (item["url"], item["title"], item["type"], item["tag"], item["content"], item["time"])
+        sql = "insert into bole (url, title, type, content, time) values('%s','%s','%s','%s','%s')" \
+              % (item["url"], item["title"], item["type"], item["content"], item["time"])
         self.cursor.execute(sql)
         self.conn.commit()
 

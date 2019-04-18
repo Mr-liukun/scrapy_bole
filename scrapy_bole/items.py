@@ -15,13 +15,12 @@ class ScrapyBoleItem(scrapy.Item):
 
 class ItemsBole(scrapy.Item):
 
-    title = scrapy.Field()
+    title = scrapy.Field()   # 标题
 
-    type = scrapy.Field()
+    type = scrapy.Field()    # 类型
 
-    url = scrapy.Field()
+    url = scrapy.Field()     # 链接
 
-    tag = scrapy.Field()
-    time = scrapy.Field()
+    time = scrapy.Field()    # 时间
 
-    content = scrapy.Field()
+    content = scrapy.Field() # 内容

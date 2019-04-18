@@ -12,31 +12,6 @@ class BoleSpider(scrapy.Spider):
     start_urls = ['http://blog.jobbole.com/all-posts/']  # 爬虫的url列表
     def parse(self, response):
 
-        # bole = ItemsBole()
-        #
-        # #标题
-        # title = response.xpath('//*[@id="archive"]/div[1]/div[2]/p[1]/a[1]/text()')
-        # title = title.extract_first()
-        # bole["title"] = title
-        #
-        # # 时间
-        # time = response.xpath('//*[@id="archive"]/div[1]/div[2]/p[1]/text()[2]')
-        # ti = time.extract_first()
-        # s = len(ti)
-        # time = ti[s-13:s-2]
-        # bole["time"] = time
-        #
-        # #分类
-        # type = response.xpath('//*[@id="archive"]/div[1]/div[2]/p[1]/a[2]/text()')
-        # type = type.extract_first()
-        # bole["type"] = type
-        #
-        # #简介
-        # content = response.xpath('//*[@id="archive"]/div[1]/div[2]/span/p/text()')
-        # content = content.extract_first()
-        # bole["content"] = content
-
-
         post_nodes = response.css("#archive .floated-thumb .post-thumb a")
         for post_node in post_nodes:
             post_url = post_node.css("::attr(href)").extract_first("")
@@ -61,27 +36,20 @@ class BoleSpider(scrapy.Spider):
 
         type=""
 
-        tag =""
-
         for i in range(len(typeList)):
-            if i==0:
-                type = typeList[i].extract()
-                continue
-
             if typeList[i].extract().find("评论") != -1:
                 continue
-            if i != len(typeList)-1:
-                tag += typeList[i].extract()+","
-            else:
-                tag += typeList[i].extract()
 
+            if i != len(typeList) - 1:
+                type += typeList[i].extract() + ","
+            else:
+                type += typeList[i].extract()
 
         #content = response.css("div.entry p::text").extract()
 
         bole["url"] = url
         bole["title"] = title
         bole["type"] = type
-        bole["tag"] = tag
         bole["content"] = ""
         bole["time"] = time
         return bole

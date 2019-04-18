@@ -9,8 +9,8 @@ import pymysql
 
 class ScrapyBolePipeline(object):
     def __init__(self):
-        self.conn = pymysql.connect("172.17.0.2", "root", "root", "onedb")
-        #self.conn = pymysql.connect("localhost", "root", "123", "onedb")
+        #self.conn = pymysql.connect("172.17.0.2", "root", "root", "onedb")
+        self.conn = pymysql.connect("localhost", "root", "123", "onedb")
         self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):

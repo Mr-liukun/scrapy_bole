@@ -65,7 +65,7 @@ class BoleSpider(scrapy.Spider):
 
         for i in range(len(typeList)):
             if i==0:
-                type = typeList[i].extract
+                type = typeList[i].extract()
                 continue
 
             if typeList[i].extract().find("评论") != -1:
@@ -84,7 +84,6 @@ class BoleSpider(scrapy.Spider):
         bole["tag"] = tag
         bole["content"] = ""
         bole["time"] = time
-
         return bole
 
 
